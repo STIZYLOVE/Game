@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Characters">
+      <UniqueIdentifier>{0bf5e684-afd8-4395-91b7-158259e56526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Enemes">
+      <UniqueIdentifier>{6d85a9ca-5a5c-406c-aca0-00cbde098d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Characters.h">
+      <UniqueIdentifier>{5c253d6b-900d-4a86-a83b-ee2d6d2c0abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Enemes.h">
+      <UniqueIdentifier>{b25aeec7-cb68-4ff8-8d31-a8b0337b92e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja.cpp">
+      <Filter>Исходные файлы\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Assasin.cpp">
+      <Filter>Исходные файлы\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Исходные файлы\Enemes</Filter>
+    </ClCompile>
+    <ClCompile Include="npcClass.h">
+      <Filter>Файлы заголовков\Characters.h</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>Исходные файлы\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="consoleManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleManager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="playerClass.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja.h">
+      <Filter>Файлы заголовков\Characters.h</Filter>
+    </ClInclude>
+    <ClInclude Include="warrior.h">
+      <Filter>Файлы заголовков\Characters.h</Filter>
+    </ClInclude>
+    <ClInclude Include="assasin.h">
+      <Filter>Файлы заголовков\Characters.h</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>Файлы заголовков\Enemes.h</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
