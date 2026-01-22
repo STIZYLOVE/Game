@@ -9,4 +9,6 @@ public:
 
 	void TakeDamage(int damage) override;
 	void GetInfo() override;
+	
+	//MADE by STIZY
 };
