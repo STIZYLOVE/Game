@@ -8,7 +8,7 @@ class Npc
 protected:
 	string name{ "персонаж" };
 	unsigned int maxHealth{ 10 };
-	unsigned int health{ 10 };
+	int health{ 10 };
 	float damage{ 5 };
 	unsigned short lvl{ 1 };
 public:
@@ -16,7 +16,7 @@ public:
 	{
 		return name;
 	}
-	unsigned int GetHealth() const
+	int GetHealth() const
 	{
 		return health;
 	}
@@ -32,6 +32,13 @@ public:
 	{
 		maxHealth += health;
 	}
+	
+	virtual void TakeDamage(int damage)
+	{
+		health -= damage;
+	}
+
+	virtual int CalculateDamage() { return 0; };
 
 	virtual void GetInfo()
 	{

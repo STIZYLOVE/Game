@@ -5,12 +5,14 @@
 class Assasin : public virtual Npc
 {
 protected:
-	unsigned short evasionFactor = 27;
+	unsigned short doubleDamageChance;
 public:
 	Assasin();
-	Assasin(std::string name, unsigned int health, float damage);
+	Assasin(std::string name, int health, float damage);
 	~Assasin();
 
+	void TakeDamage(int damage) override;
+	int CalculateDamage() override;
 	void GetInfo() override;
 	void Create() override;
 

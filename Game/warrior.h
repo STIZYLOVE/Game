@@ -5,14 +5,14 @@
 class Warrior : public virtual Npc
 {
 protected:
-	unsigned short strenght{ 31 };
-	std::string weapons[4] = { "кастет", "дубинка", "клинок", "меч" };
+	unsigned short damageMultiplier;
 public:
 	Warrior();
-	Warrior(std::string name, unsigned int health, float damage);
+	Warrior(std::string name, int health, float damage);
 	~Warrior();
 
-	void GetWeapons();
+	int CalculateDamage() override;
+	void TakeDamage(int damage) override;
 	void GetInfo() override;
 	void Create() override;
 

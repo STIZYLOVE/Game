@@ -7,5 +7,6 @@ public:
 	Enemy(string name, int health);
 	Enemy(string name, int health, int damage);
 
+	void TakeDamage(int damage) override;
 	void GetInfo() override;
 };

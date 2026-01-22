@@ -1,6 +1,8 @@
 #include "Assasin.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include "consoleManager.h"
 
 using namespace std;
 
@@ -10,9 +12,10 @@ Assasin::Assasin()
 	maxHealth = 20;
 	health = 20;
 	damage = 15;
+	doubleDamageChance = 10; //1 - 100
 }
 
-Assasin::Assasin(std::string name, unsigned int health, float damage)
+Assasin::Assasin(std::string name, int health, float damage)
 {
 	cout << "Кастомный конструктор ассасина" << endl;
 	this->name = name;
@@ -20,10 +23,28 @@ Assasin::Assasin(std::string name, unsigned int health, float damage)
 	this->damage = damage;
 }
 
+void Assasin::TakeDamage(int damage)
+{
+	Npc::TakeDamage(damage);
+}
+
+int Assasin::CalculateDamage()
+{
+	int random_num = 1 + std::rand() % 100;
+
+	if (random_num <= doubleDamageChance)
+	{
+		printSlowly("Вы совершили двойной удар!", false);
+		return damage * 2;
+	}
+
+	return damage;
+}
+
 void Assasin::GetInfo()
 {
 	Npc::GetInfo();
-	cout << "Коэффициент уклонения - " << evasionFactor << endl;
+	cout << "Шанс на вторую атаку(%) - " << doubleDamageChance << endl;
 }
 
 void Assasin::Create()

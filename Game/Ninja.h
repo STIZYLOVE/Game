@@ -6,8 +6,12 @@
 
 class Ninja : public Warrior, public Assasin
 {
+protected:
+	unsigned short evasionFactor;
 public:
 	Ninja();
+	void TakeDamage(int damage) override;
+	int CalculateDamage() override;
 	void GetInfo() override;
 	void Create() override;
 };

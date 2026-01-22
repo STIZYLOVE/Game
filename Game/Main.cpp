@@ -3,6 +3,7 @@
 #include <chrono>
 #include <thread>
 #include <cstdlib>
+#include <string>
 
 #include "windows.h"
 
@@ -125,6 +126,92 @@ unique_ptr<Npc> CreateCharacter(CharacterType type)
     }
 }
 
+int GetRandom(int min, int max)
+{
+    return min + std::rand() % (max - min + 1);
+}
+
+int AttackEnemy(Player* player, Enemy* enemy)
+{
+    int damage = player->GetCharacter()->CalculateDamage();
+
+    enemy->TakeDamage(damage);
+    printSlowly("Вы нанесли ", false);
+    printSlowly(to_string(damage), 4, false, Yellow);
+    printSlowly(" урона.\n ", false);
+
+    enemy->GetInfo();
+
+    Pause(false);
+
+    return damage;
+}
+
+int EnemyAttack(Player* player, Enemy* enemy)
+{
+    int damage = enemy->GetDamage();
+
+    printSlowly("Враг атакует! Оставшееся здоровье: ", false);
+    player->GetCharacter()->TakeDamage(damage);
+    printSlowly(to_string(player->GetCharacter()->GetHealth()),2 ,false, Red);
+
+    Pause(false);
+
+    return damage;
+}
+
+void Fight(bool attackFirst, Player* player, Enemy* enemy)
+{
+    if (attackFirst)
+    {
+        printSlowly("\nВы атакуете первым. ", false);
+
+        while (enemy->GetHealth() > 0 && player->GetCharacter()->GetHealth() > 0)
+        {
+            AttackEnemy(player, enemy);
+            if (enemy->GetHealth() <= 0)
+                continue;
+            EnemyAttack(player, enemy);
+        }
+        if (enemy->GetHealth() <= 0)
+        {
+            printSlowly("Вы одолели врага!", false);
+            return;
+        }
+        else
+        {
+            ClearScreen();
+            printSlowly("ВЫ ПОГИБЛИ!",3, false, Red);
+            exit(0);
+        }
+    }
+    else
+    {
+        printSlowly("Избежать драки не получилось ", false);
+        printSlowly(enemy->GetName(), false);
+        printSlowly(" атакует первым.", true);
+
+        while (enemy->GetHealth() > 0 && player->GetCharacter()->GetHealth() > 0)
+        {
+            EnemyAttack(player, enemy);
+            if (player->GetCharacter()->GetHealth() <= 0)
+                continue;
+            AttackEnemy(player, enemy);
+        }
+        if (enemy->GetHealth() <= 0)
+        {
+            printSlowly("Вы одолели врага!", false);
+            return;
+        }
+        else
+        {
+            ClearScreen();
+            printSlowly("ВЫ ПОГИБЛИ!", 3, false, Red);
+            exit(0);
+        }
+    }
+}
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -234,19 +321,16 @@ int main()
     printSlowly("Лес Фей",3,false, Purple);
     printSlowly("...", 1, true);
 
+    ClearScreen();
+
     printSlowly("По дороге вы нашли старое разрушенное здание, рядом стоит стундук. ", false);
     printSlowly("Вы хотите открыть сундук?\n\t 1 - Взглянуть.\n\t 2 - Не сотоит.\n", false);
 
-    int choise;
 
-    choise = TestChoise(2);
-
-    ClearScreen();
-
-    if (choise == 1)
+    if (TestChoise(2) == 1)
     {
         printSlowly("Вам повезло! Помимо ненужного хлама вы нашли ", false);
-        printSlowly("Кристал Жизни", 3, false, Red);
+        printSlowly("Кристал Жизни", 5, false, Red);
         printSlowly(". Максимальный уровень здоровья увеличен на (5).\n", true);
 
         playerCharacter->ChangeMaxHealth(5);
@@ -258,9 +342,39 @@ int main()
         ShowName("Марк");
         printSlowly("Вот это халява!", true);
     }
-    else if (choise == 2)
+    else
     {
-        printSlowly("Вы решили что трогать чужое - плохо.", false);
+        printSlowly("Вы решили что трогать чужое - плохо.", true);
+    }
+
+    ClearScreen();
+
+    Enemy* enemy = new Enemy("Волк обыкновенный", 300, 5);
+
+    printSlowly("Вы продолжаете свой путь...\n", false);
+    printSlowly("Вы встретили лесную тварь, она настроена враждебно.\n", true);
+
+    enemy->GetInfo();
+
+    printSlowly("Вы хотите с ней сразиться?\n\t", false);
+    printSlowly("1 - Погнали!\n\t2 - Сбежать (Шанс на успех 50%)", false);
+
+    if (TestChoise(2) == 1)
+    {
+        ClearScreen();
+        Fight(true, player, enemy);
+    }
+    else
+    {
+        if (GetRandom(1, 2) == 1)
+        {
+            ClearScreen();
+            Fight(false, player, enemy);
+        }
+        else
+        {
+            printSlowly("Вы смогли уйти от конфликта!", true); 
+        }
     }
 
     return 0;

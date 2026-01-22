@@ -10,9 +10,10 @@ Warrior::Warrior()
 	maxHealth = 35;
 	health = 35;
 	damage = 10;
+	damageMultiplier = 10; // 0 - 100
 }
 
-Warrior::Warrior(std::string name, unsigned int health, float damage)
+Warrior::Warrior(std::string name, int health, float damage)
 {
 	cout << "кастомный конструктор война" << endl;
 	this->name = name;
@@ -20,20 +21,22 @@ Warrior::Warrior(std::string name, unsigned int health, float damage)
 	this->damage = damage;
 }
 
-void Warrior::GetWeapons()
+void Warrior::TakeDamage(int damage)
 {
-	cout << name << " взял в руки " << weapons[lvl - 1];
+	Npc::TakeDamage(damage);
+}
+
+int Warrior::CalculateDamage()
+{
+	float tempDamage = static_cast<float>(damage) * (1.0f + static_cast<float>(damageMultiplier) / 100.0f);
+	return static_cast<int>(tempDamage);
 }
 
 void Warrior::GetInfo()
 {
 	Npc::GetInfo();
-	cout << "Сила - " << strenght << endl;
-	cout << "Доступное оружие - ";
-	for (int i = 0; i < lvl; i++)
-	{
-		cout << weapons[i] << endl;
-	}
+	cout << "Множитель урона(%) - " << damageMultiplier << endl;
+
 }
 
 void Warrior::Create()
@@ -43,7 +46,6 @@ void Warrior::Create()
 	cin >> name;
 	cout << endl;
 	GetInfo();
-	GetWeapons();
 	cout << endl;
 	cout << endl;
 }
@@ -52,7 +54,7 @@ bool Warrior::operator == (const Warrior& warrior) const
 {
 	return (warrior.damage == this->damage) &&
 		(warrior.health == this->health) &&
-		(warrior.strenght == this->strenght);
+		(warrior.damageMultiplier == this->damageMultiplier);
 }
 
 Warrior& Warrior::operator = (const Npc& npc)
