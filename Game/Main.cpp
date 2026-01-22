@@ -241,6 +241,50 @@ int main()
 
     ClearScreen();
 
+    printSlowly("Вы очнулись на опушке леса.\n", false);
+    printSlowly("Придя в себя вы проверяете карманы и находите плесневый кусок хлеба и оружие.\n", false);
+    printSlowly("Поднявшись и немного пройдя сквозь лесные заросли вы набредаете на просёлочную дорогу.\n", false);
+    printSlowly("Вы следуете этому пути в надежде наткнуться на поселение.\n", false);
+    printSlowly("Спустя некоторое время скитаний в вас разыгрался аппетит.\n", false);
+    printSlowly("Вы собираетесь употребить свой единственный паёк, но из куста выползает исхудалая шавка учуявшая затхлый запах хлеба.\n", false);
+    printSlowly("Вы смотрите в жалобные глазёнки пса, он смотрит в ответ.\n", false);
+    printSlowly("Вы смотрите на хлеб, пёс делает тоже самое.\n", false);
+    printSlowly("Отдать последее что у вас есть псу?\n\t", false);
+
+    string dogName;
+
+    printSlowly("1 - Пускай кушает.\n\t2 - Я сам жрать хочу!\n", false);
+
+    switch (TestChoise(2, "Так не получится."))
+    {
+    case 1:
+        ClearScreen();
+        printSlowly("Вы бросаете горбушку псу, он жадно её пожирает.\n\n", false);
+        ShowName("Псина");
+        printSlowly("От души бро!\n\n", false);
+        printSlowly("Пёс становится вашим компаньоном.\n\n",20, false);
+        printSlowly("Вы продолжаете путешествие с новым другом! Как вы его назовёте?\n\n", true);
+
+        cin >> dogName;
+
+        break;
+    case 2:
+        ClearScreen();
+        printSlowly("Вы плюёте в сторону и прячете хлеб в карман. Пёс смотрит в вашу сторону\n\n", false);
+        ShowName("Псина");
+        printSlowly("Подонок.\n\n", false);
+        printSlowly("Пёс умер.\n", 3, true);
+
+        dogName = "";
+
+        Pause(true);
+        break;
+    }
+
+    ClearScreen();
+
+    printSlowly("Вы забредаете в самую чащу леса.\n\n", false);
+
     ShowName("Незнакомец");
     printSlowly("Привет, путник\nПрисядь у костра и расскажи о себе\nТы кем будешь?\n\t", false);
     cout << "1 - Воин\n\t2 - Ассасин\n\t3 - Нинзя\n";
@@ -273,7 +317,10 @@ int main()
     ShowName("Незнакомец");
     printSlowly("Ну что, приятно познакомится ", false);
     printSlowly(playerCharacter->GetName() + "\n", 2, false);
-    printSlowly("Я Марк, воин! Ты чего забыл в этом лесу?", true);
+    if(dogName.empty())
+        printSlowly("Я Марк, воин! Ты чего забыл в этом лесу?", true);
+    else
+        printSlowly("Я Марк, воин! Что ты со своей псиной забыл в этом лесу?", true);
 
     ShowName(playerCharacter->GetName());
     printSlowly("Взаимно! Я блуждаю в этих лесах, чтобы найти полезные ", false);
@@ -323,7 +370,7 @@ int main()
 
     ClearScreen();
 
-    printSlowly("По дороге вы нашли старое разрушенное здание, рядом стоит стундук. ", false);
+    printSlowly("По дороге вы нашли старое разрушенное здание, рядом стоит сундук. ", false);
     printSlowly("Вы хотите открыть сундук?\n\t 1 - Взглянуть.\n\t 2 - Не сотоит.\n", false);
 
 
@@ -339,8 +386,11 @@ int main()
         cout << endl;
         Pause(true);
 
-        ShowName("Марк");
-        printSlowly("Вот это халява!", true);
+        if (!dogName.empty())
+        {
+            ShowName(dogName);
+            printSlowly("Вот это халява!", true);
+        }
     }
     else
     {
@@ -349,7 +399,7 @@ int main()
 
     ClearScreen();
 
-    Enemy* enemy = new Enemy("Волк обыкновенный", 300, 5);
+    Enemy* enemy = new Enemy("Волк обыкновенный", 30, 5);
 
     printSlowly("Вы продолжаете свой путь...\n", false);
     printSlowly("Вы встретили лесную тварь, она настроена враждебно.\n", true);
