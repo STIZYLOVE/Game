@@ -4,6 +4,7 @@
 #include <thread>
 #include <cstdlib>
 #include <string>
+#include <ctime>
 
 #include "windows.h"
 
@@ -217,6 +218,8 @@ int main()
     setlocale(LC_ALL, "Rus");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+
+    srand(std::time(0));
 
     Player* player = new Player();
 

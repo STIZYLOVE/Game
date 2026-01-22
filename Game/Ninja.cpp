@@ -1,6 +1,7 @@
 #include "Ninja.h"
 #include <iostream>
 #include <fstream>
+#include <ctime>
 #include "consoleManager.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ Ninja::Ninja()
 	evasionFactor = 8; // 1 - 100;
 	damageMultiplier = 10;
 	doubleDamageChance = 2;
+	srand(std::time(0));
 }
 
 void Ninja::TakeDamage(int damage)

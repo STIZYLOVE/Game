@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <ctime>
 #include "consoleManager.h"
 
 using namespace std;
@@ -13,6 +14,7 @@ Assasin::Assasin()
 	health = 20;
 	damage = 15;
 	doubleDamageChance = 10; //1 - 100
+	srand(std::time(0));
 }
 
 Assasin::Assasin(std::string name, int health, float damage)
