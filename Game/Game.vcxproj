@@ -30,7 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="enemy.h" />
-    <ClInclude Include="Ninja.h" />
+    <ClInclude Include="ninja.h" />
     <ClInclude Include="playerClass.h" />
     <ClInclude Include="warrior.h" />
     <ClInclude Include="assasin.h" />

@@ -56,7 +56,7 @@
     <ClInclude Include="playerClass.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Ninja.h">
+    <ClInclude Include="ninja.h">
       <Filter>Файлы заголовков\Characters.h</Filter>
     </ClInclude>
     <ClInclude Include="warrior.h">

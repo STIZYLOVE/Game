@@ -100,7 +100,7 @@ void ClearScreen() {
 #endif
 }
 
-void ChangeDefaulSpeed(double speed)
+void ChangeDefaultSpeed(double speed)
 {
     defaultCharsPerSecond = speed;
 }

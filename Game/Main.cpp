@@ -65,9 +65,9 @@ struct Treasure
     }
 };
 
-struct Сloth : Treasure
+struct Cloth : Treasure
 {
-    Сloth(ValueQuality quality) : Treasure(quality) {};
+    Cloth(ValueQuality quality) : Treasure(quality) {};
     string valueSite[5]{ "Ботинки", "Поножи", "Нагрудник", "Шлем"};
     string site{ NULL };
     unsigned short armor{ 1 };
@@ -226,16 +226,16 @@ int main()
     switch (TestChoise(4, "Такой настройки нет!"))
     {
     case 1:
-        ChangeDefaulSpeed(30);
+        ChangeDefaultSpeed(30);
         break;
     case 2:
-        ChangeDefaulSpeed(60);
+        ChangeDefaultSpeed(60);
         break;
     case 3:
-        ChangeDefaulSpeed(90);
+        ChangeDefaultSpeed(90);
         break;
     case 4:
-        ChangeDefaulSpeed(0);
+        ChangeDefaultSpeed(0);
         break;
     }
 
@@ -395,11 +395,12 @@ int main()
     else
     {
         printSlowly("Вы решили что трогать чужое - плохо.", true);
+        Pause(false);
     }
 
     ClearScreen();
 
-    Enemy* enemy = new Enemy("Волк обыкновенный", 30, 5);
+    Enemy* enemy = new Enemy("Волк обыкновенный", 30, 50);
 
     printSlowly("Вы продолжаете свой путь...\n", false);
     printSlowly("Вы встретили лесную тварь, она настроена враждебно.\n", true);

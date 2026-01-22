@@ -36,6 +36,10 @@ public:
 	virtual void TakeDamage(int damage)
 	{
 		health -= damage;
+		if (health < 0)
+		{
+			health = 0;
+		}
 	}
 
 	virtual int CalculateDamage() { return 0; };
