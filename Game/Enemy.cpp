@@ -21,7 +21,7 @@ void Enemy::TakeDamage(int damage)
 
 void Enemy::GetInfo() {
 	cout << endl;
-	cout << "На вас напал  - " << name << endl;
+	cout << "На вас напал - " << name << endl;
 	if(health < 0)
 		cout << "Здоровье - 0" << endl;
 	else

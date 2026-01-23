@@ -42,6 +42,24 @@ public:
 		}
 	}
 
+	virtual void AddHealth(int healthAmount)
+	{
+		health += healthAmount;
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+	}
+
+	void NextLevel()
+	{
+		lvl += 1;
+		UpgradePassive();
+		cout << "Пассивная способность улучшена.\n" << endl;
+	}
+
+	virtual void UpgradePassive() {}
+	
 	virtual int CalculateDamage() { return 0; };
 
 	virtual void GetInfo()

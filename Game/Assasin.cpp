@@ -43,6 +43,11 @@ int Assasin::CalculateDamage()
 	return damage;
 }
 
+void Assasin::UpgradePassive()
+{
+	doubleDamageChance += 5;
+}
+
 void Assasin::GetInfo()
 {
 	Npc::GetInfo();

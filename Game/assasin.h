@@ -16,6 +16,8 @@ public:
 	void GetInfo() override;
 	void Create() override;
 
+	void UpgradePassive() override;
+
 	Assasin operator + (const Assasin& assasin) const;
 
 };

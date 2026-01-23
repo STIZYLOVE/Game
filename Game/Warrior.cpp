@@ -50,6 +50,11 @@ void Warrior::Create()
 	cout << endl;
 }
 
+void Warrior::UpgradePassive()
+{
+	damageMultiplier += 5;
+}
+
 bool Warrior::operator == (const Warrior& warrior) const
 {
 	return (warrior.damage == this->damage) &&

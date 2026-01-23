@@ -14,4 +14,5 @@ public:
 	int CalculateDamage() override;
 	void GetInfo() override;
 	void Create() override;
+	void UpgradePassive() override;
 };

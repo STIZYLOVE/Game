@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <fstream> 
 #include <chrono>
 #include <thread>
@@ -32,33 +32,33 @@ enum ColorConsole {
 
 enum class ValueQuality
 {
-    МУСОР, ОБЫЧНОЕ, РЕДКОЕ, МИФИЧЕСКОЕ, ЛЕГЕНДАРНОЕ
+    РњРЈРЎРћР , РћР‘Р«Р§РќРћР•, Р Р•Р”РљРћР•, РњРР¤РР§Р•РЎРљРћР•, Р›Р•Р“Р•РќР”РђР РќРћР•
 };
 
 struct Treasure
 {
     Treasure() = default;
-    string name{ "добыча" };
-    ValueQuality quality = ValueQuality::МИФИЧЕСКОЕ;
+    string name{ "РґРѕР±С‹С‡Р°" };
+    ValueQuality quality = ValueQuality::РњРР¤РР§Р•РЎРљРћР•;
     unsigned int price{ 0 };
     Treasure(ValueQuality quality)
     {
         switch (quality)
         {
-        case ValueQuality::МУСОР:
-            cout << "качество плохое\n";
+        case ValueQuality::РњРЈРЎРћР :
+            cout << "РєР°С‡РµСЃС‚РІРѕ РїР»РѕС…РѕРµ\n";
             break;
-        case ValueQuality::ОБЫЧНОЕ:
-            cout << "качество средненькое\n";
+        case ValueQuality::РћР‘Р«Р§РќРћР•:
+            cout << "РєР°С‡РµСЃС‚РІРѕ СЃСЂРµРґРЅРµРЅСЊРєРѕРµ\n";
             break;
-        case ValueQuality::РЕДКОЕ:
-            cout << "качество хорошее\n";
+        case ValueQuality::Р Р•Р”РљРћР•:
+            cout << "РєР°С‡РµСЃС‚РІРѕ С…РѕСЂРѕС€РµРµ\n";
             break;
-        case ValueQuality::МИФИЧЕСКОЕ:
-            cout << "качество крутое\n";
+        case ValueQuality::РњРР¤РР§Р•РЎРљРћР•:
+            cout << "РєР°С‡РµСЃС‚РІРѕ РєСЂСѓС‚РѕРµ\n";
             break;
-        case ValueQuality::ЛЕГЕНДАРНОЕ:
-            cout << "качество идеальное\n";
+        case ValueQuality::Р›Р•Р“Р•РќР”РђР РќРћР•:
+            cout << "РєР°С‡РµСЃС‚РІРѕ РёРґРµР°Р»СЊРЅРѕРµ\n";
             break;
         default:
             break;
@@ -69,7 +69,7 @@ struct Treasure
 struct Cloth : Treasure
 {
     Cloth(ValueQuality quality) : Treasure(quality) {};
-    string valueSite[5]{ "Ботинки", "Поножи", "Нагрудник", "Шлем"};
+    string valueSite[5]{ "Р‘РѕС‚РёРЅРєРё", "РџРѕРЅРѕР¶Рё", "РќР°РіСЂСѓРґРЅРёРє", "РЁР»РµРј"};
     string site{ NULL };
     unsigned short armor{ 1 };
 };
@@ -99,7 +99,7 @@ unsigned short TestChoise(unsigned short maxChoise)
     cin >> choise;
     while (choise > maxChoise || choise < 1)
     {
-        cout << "Такого выбора не существует!" << endl;
+        cout << "РўР°РєРѕРіРѕ РІС‹Р±РѕСЂР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!" << endl;
         cin >> choise;
     }
     return choise;
@@ -122,7 +122,7 @@ unique_ptr<Npc> CreateCharacter(CharacterType type)
         return make_unique<Ninja>();
         break;
     default:
-        invalid_argument("Неизвестный тип персонажа");
+        invalid_argument("РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїРµСЂСЃРѕРЅР°Р¶Р°");
         break;
     }
 }
@@ -137,9 +137,9 @@ int AttackEnemy(Player* player, Enemy* enemy)
     int damage = player->GetCharacter()->CalculateDamage();
 
     enemy->TakeDamage(damage);
-    printSlowly("Вы нанесли ", false);
+    printSlowly("Р’С‹ РЅР°РЅРµСЃР»Рё ", false);
     printSlowly(to_string(damage), 4, false, Yellow);
-    printSlowly(" урона.\n ", false);
+    printSlowly(" СѓСЂРѕРЅР°.\n ", false);
 
     enemy->GetInfo();
 
@@ -152,7 +152,7 @@ int EnemyAttack(Player* player, Enemy* enemy)
 {
     int damage = enemy->GetDamage();
 
-    printSlowly("Враг атакует! Оставшееся здоровье: ", false);
+    printSlowly("Р’СЂР°Рі Р°С‚Р°РєСѓРµС‚! РћСЃС‚Р°РІС€РµРµСЃСЏ Р·РґРѕСЂРѕРІСЊРµ: ", false);
     player->GetCharacter()->TakeDamage(damage);
     printSlowly(to_string(player->GetCharacter()->GetHealth()),2 ,false, Red);
 
@@ -165,7 +165,7 @@ void Fight(bool attackFirst, Player* player, Enemy* enemy)
 {
     if (attackFirst)
     {
-        printSlowly("\nВы атакуете первым. ", false);
+        printSlowly("\nР’С‹ Р°С‚Р°РєСѓРµС‚Рµ РїРµСЂРІС‹Рј. ", false);
 
         while (enemy->GetHealth() > 0 && player->GetCharacter()->GetHealth() > 0)
         {
@@ -176,21 +176,20 @@ void Fight(bool attackFirst, Player* player, Enemy* enemy)
         }
         if (enemy->GetHealth() <= 0)
         {
-            printSlowly("Вы одолели врага!", false);
+            printSlowly("Р’С‹ РѕРґРѕР»РµР»Рё РІСЂР°РіР°!\n\n", false);
             return;
         }
         else
         {
             ClearScreen();
-            printSlowly("ВЫ ПОГИБЛИ!",3, false, Red);
+            printSlowly("Р’Р« РџРћР“РР‘Р›Р!",3, false, Red);
             exit(0);
         }
     }
     else
     {
-        printSlowly("Избежать драки не получилось ", false);
         printSlowly(enemy->GetName(), false);
-        printSlowly(" атакует первым.", true);
+        printSlowly(" Р°С‚Р°РєСѓРµС‚ РїРµСЂРІС‹Рј.", true);
 
         while (enemy->GetHealth() > 0 && player->GetCharacter()->GetHealth() > 0)
         {
@@ -201,13 +200,13 @@ void Fight(bool attackFirst, Player* player, Enemy* enemy)
         }
         if (enemy->GetHealth() <= 0)
         {
-            printSlowly("Вы одолели врага!", false);
+            printSlowly("Р’С‹ РѕРґРѕР»РµР»Рё РІСЂР°РіР°!\n\n", false);
             return;
         }
         else
         {
             ClearScreen();
-            printSlowly("ВЫ ПОГИБЛИ!", 3, false, Red);
+            printSlowly("Р’Р« РџРћР“РР‘Р›Р!", 3, false, Red);
             exit(0);
         }
     }
@@ -223,10 +222,10 @@ int main()
 
     Player* player = new Player();
 
-    ShowName("Настройка");
-    printSlowly("Выберите скорость текста:\n\t1 - Медленная\n\t2 - Оптимальная\n\t3 - Быстрая\n\t4 - Моментальная\n", false);
+    ShowName("РќР°СЃС‚СЂРѕР№РєР°");
+    printSlowly("Р’С‹Р±РµСЂРёС‚Рµ СЃРєРѕСЂРѕСЃС‚СЊ С‚РµРєСЃС‚Р°:\n\t1 - РњРµРґР»РµРЅРЅР°СЏ\n\t2 - РћРїС‚РёРјР°Р»СЊРЅР°СЏ\n\t3 - Р‘С‹СЃС‚СЂР°СЏ\n\t4 - РњРѕРјРµРЅС‚Р°Р»СЊРЅР°СЏ\n", false);
 
-    switch (TestChoise(4, "Такой настройки нет!"))
+    switch (TestChoise(4, "РўР°РєРѕР№ РЅР°СЃС‚СЂРѕР№РєРё РЅРµС‚!"))
     {
     case 1:
         ChangeDefaultSpeed(30);
@@ -244,39 +243,39 @@ int main()
 
     ClearScreen();
 
-    printSlowly("Вы очнулись на опушке леса.\n", false);
-    printSlowly("Придя в себя вы проверяете карманы и находите плесневый кусок хлеба и оружие.\n", false);
-    printSlowly("Поднявшись и немного пройдя сквозь лесные заросли вы набредаете на просёлочную дорогу.\n", false);
-    printSlowly("Вы следуете этому пути в надежде наткнуться на поселение.\n", false);
-    printSlowly("Спустя некоторое время скитаний в вас разыгрался аппетит.\n", false);
-    printSlowly("Вы собираетесь употребить свой единственный паёк, но из куста выползает исхудалая шавка учуявшая затхлый запах хлеба.\n", false);
-    printSlowly("Вы смотрите в жалобные глазёнки пса, он смотрит в ответ.\n", false);
-    printSlowly("Вы смотрите на хлеб, пёс делает тоже самое.\n", false);
-    printSlowly("Отдать последее что у вас есть псу?\n\t", false);
+    printSlowly("Р’С‹ РѕС‡РЅСѓР»РёСЃСЊ РЅР° РѕРїСѓС€РєРµ Р»РµСЃР°.\n", false);
+    printSlowly("РџСЂРёРґСЏ РІ СЃРµР±СЏ РІС‹ РїСЂРѕРІРµСЂСЏРµС‚Рµ РєР°СЂРјР°РЅС‹ Рё РЅР°С…РѕРґРёС‚Рµ РїР»РµСЃРЅРµРІС‹Р№ РєСѓСЃРѕРє С…Р»РµР±Р° Рё РѕСЂСѓР¶РёРµ.\n", false);
+    printSlowly("РџРѕРґРЅСЏРІС€РёСЃСЊ Рё РЅРµРјРЅРѕРіРѕ РїСЂРѕР№РґСЏ СЃРєРІРѕР·СЊ Р»РµСЃРЅС‹Рµ Р·Р°СЂРѕСЃР»Рё РІС‹ РЅР°Р±СЂРµРґР°РµС‚Рµ РЅР° РїСЂРѕСЃС‘Р»РѕС‡РЅСѓСЋ РґРѕСЂРѕРіСѓ.\n", false);
+    printSlowly("Р’С‹ СЃР»РµРґСѓРµС‚Рµ СЌС‚РѕРјСѓ РїСѓС‚Рё РІ РЅР°РґРµР¶РґРµ РЅР°С‚РєРЅСѓС‚СЊСЃСЏ РЅР° РїРѕСЃРµР»РµРЅРёРµ.\n", false);
+    printSlowly("РЎРїСѓСЃС‚СЏ РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ СЃРєРёС‚Р°РЅРёР№ РІ РІР°СЃ СЂР°Р·С‹РіСЂР°Р»СЃСЏ Р°РїРїРµС‚РёС‚.\n", false);
+    printSlowly("Р’С‹ СЃРѕР±РёСЂР°РµС‚РµСЃСЊ СѓРїРѕС‚СЂРµР±РёС‚СЊ СЃРІРѕР№ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ РїР°С‘Рє, РЅРѕ РёР· РєСѓСЃС‚Р° РІС‹РїРѕР»Р·Р°РµС‚ РёСЃС…СѓРґР°Р»Р°СЏ С€Р°РІРєР° СѓС‡СѓСЏРІС€Р°СЏ Р·Р°С‚С…Р»С‹Р№ Р·Р°РїР°С… С…Р»РµР±Р°.\n", false);
+    printSlowly("Р’С‹ СЃРјРѕС‚СЂРёС‚Рµ РІ Р¶Р°Р»РѕР±РЅС‹Рµ РіР»Р°Р·С‘РЅРєРё РїСЃР°, РѕРЅ СЃРјРѕС‚СЂРёС‚ РІ РѕС‚РІРµС‚.\n", false);
+    printSlowly("Р’С‹ СЃРјРѕС‚СЂРёС‚Рµ РЅР° С…Р»РµР±, РїС‘СЃ РґРµР»Р°РµС‚ С‚РѕР¶Рµ СЃР°РјРѕРµ.\n\n", false);
+    printSlowly("РћС‚РґР°С‚СЊ РїРѕСЃР»РµРґРµРµ С‡С‚Рѕ Сѓ РІР°СЃ РµСЃС‚СЊ РїСЃСѓ?\n\t", false);
 
     string dogName;
 
-    printSlowly("1 - Пускай кушает.\n\t2 - Я сам жрать хочу!\n", false);
+    printSlowly("1 - РџСѓСЃРєР°Р№ РєСѓС€Р°РµС‚.\n\t2 - РЇ СЃР°Рј Р¶СЂР°С‚СЊ С…РѕС‡Сѓ!\n", false);
 
-    switch (TestChoise(2, "Так не получится."))
+    switch (TestChoise(2, "РўР°Рє РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ."))
     {
     case 1:
         ClearScreen();
-        printSlowly("Вы бросаете горбушку псу, он жадно её пожирает.\n\n", false);
-        ShowName("Псина");
-        printSlowly("От души бро!\n\n", false);
-        printSlowly("Пёс становится вашим компаньоном.\n\n",20, false);
-        printSlowly("Вы продолжаете путешествие с новым другом! Как вы его назовёте?\n\n", true);
+        printSlowly("Р’С‹ Р±СЂРѕСЃР°РµС‚Рµ РіРѕСЂР±СѓС€РєСѓ РїСЃСѓ, РѕРЅ Р¶Р°РґРЅРѕ РµС‘ РїРѕР¶РёСЂР°РµС‚.\n\n", false);
+        ShowName("РџСЃРёРЅР°");
+        printSlowly("РћС‚ РґСѓС€Рё Р±СЂРѕ!\n\n", false);
+        printSlowly("РџС‘СЃ СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РІР°С€РёРј РєРѕРјРїР°РЅСЊРѕРЅРѕРј.\n\n", 20, false);
+        printSlowly("Р’С‹ РїСЂРѕРґРѕР»Р¶Р°РµС‚Рµ РїСѓС‚РµС€РµСЃС‚РІРёРµ СЃ РЅРѕРІС‹Рј РґСЂСѓРіРѕРј! РљР°Рє РІС‹ РµРіРѕ РЅР°Р·РѕРІС‘С‚Рµ?\n\n", true);
 
         cin >> dogName;
 
         break;
     case 2:
         ClearScreen();
-        printSlowly("Вы плюёте в сторону и прячете хлеб в карман. Пёс смотрит в вашу сторону\n\n", false);
-        ShowName("Псина");
-        printSlowly("Подонок.\n\n", false);
-        printSlowly("Пёс умер.\n", 3, true);
+        printSlowly("Р’С‹ РїР»СЋС‘С‚Рµ РІ СЃС‚РѕСЂРѕРЅСѓ Рё РїСЂСЏС‡РµС‚Рµ С…Р»РµР± РІ РєР°СЂРјР°РЅ. РџС‘СЃ СЃРјРѕС‚СЂРёС‚ РІ РІР°С€Сѓ СЃС‚РѕСЂРѕРЅСѓ\n\n", false);
+        ShowName("РџСЃРёРЅР°");
+        printSlowly("РџРѕРґРѕРЅРѕРє.\n\n", false);
+        printSlowly("РџС‘СЃ СѓРјРµСЂ.\n", 3, true);
 
         dogName = "";
 
@@ -286,14 +285,14 @@ int main()
 
     ClearScreen();
 
-    printSlowly("Вы забредаете в самую чащу леса.\n\n", false);
+    printSlowly("Р’С‹ Р·Р°Р±СЂРµРґР°РµС‚Рµ РІ СЃР°РјСѓСЋ С‡Р°С‰Сѓ Р»РµСЃР°.\n\n", false);
 
-    ShowName("Незнакомец");
-    printSlowly("Привет, путник\nПрисядь у костра и расскажи о себе\nТы кем будешь?\n\t", false);
-    cout << "1 - Воин\n\t2 - Ассасин\n\t3 - Нинзя\n";
+    ShowName("РќРµР·РЅР°РєРѕРјРµС†");
+    printSlowly("РџСЂРёРІРµС‚, РїСѓС‚РЅРёРє\nРџСЂРёСЃСЏРґСЊ Сѓ РєРѕСЃС‚СЂР° Рё СЂР°СЃСЃРєР°Р¶Рё Рѕ СЃРµР±Рµ\nРўС‹ РєРµРј Р±СѓРґРµС€СЊ?\n\t", false);
+    cout << "1 - Р’РѕРёРЅ\n\t2 - РђСЃСЃР°СЃРёРЅ\n\t3 - РќРёРЅР·СЏ\n";
 
     unique_ptr<Npc> character;
-    switch (TestChoise(3, "Чего-чего ты не ошибся ли?\nНе мог бы ты повторить"))
+    switch (TestChoise(3, "Р§РµРіРѕ-С‡РµРіРѕ С‚С‹ РЅРµ РѕС€РёР±СЃСЏ Р»Рё?\nРќРµ РјРѕРі Р±С‹ С‚С‹ РїРѕРІС‚РѕСЂРёС‚СЊ"))
     {
     case 1:
         character = CreateCharacter(CharacterType::WARRIOR);
@@ -317,71 +316,73 @@ int main()
 
     ClearScreen();
 
-    ShowName("Незнакомец");
-    printSlowly("Ну что, приятно познакомится ", false);
+    ShowName("РќРµР·РЅР°РєРѕРјРµС†");
+    printSlowly("РќСѓ С‡С‚Рѕ, РїСЂРёСЏС‚РЅРѕ РїРѕР·РЅР°РєРѕРјРёС‚СЃСЏ ", false);
     printSlowly(playerCharacter->GetName() + "\n", 2, false);
-    if(dogName.empty())
-        printSlowly("Я Марк, воин! Ты чего забыл в этом лесу?", true);
+    if (dogName.empty())
+        printSlowly("РЇ РњР°СЂРє, РІРѕРёРЅ! РўС‹ С‡РµРіРѕ Р·Р°Р±С‹Р» РІ СЌС‚РѕРј Р»РµСЃСѓ?", true);
     else
-        printSlowly("Я Марк, воин! Что ты со своей псиной забыл в этом лесу?", true);
+        printSlowly("РЇ РњР°СЂРє, РІРѕРёРЅ! Р§С‚Рѕ С‚С‹ СЃРѕ СЃРІРѕРµР№ РїСЃРёРЅРѕР№ Р·Р°Р±С‹Р» РІ СЌС‚РѕРј Р»РµСЃСѓ?", true);
 
     ShowName(playerCharacter->GetName());
-    printSlowly("Взаимно! Я блуждаю в этих лесах, чтобы найти полезные ", false);
-    printSlowly("артефакты.", 4, true);
+    printSlowly("Р’Р·Р°РёРјРЅРѕ! РЇ Р±Р»СѓР¶РґР°СЋ РІ СЌС‚РёС… Р»РµСЃР°С…, С‡С‚РѕР±С‹ РЅР°Р№С‚Рё РїРѕР»РµР·РЅС‹Рµ ", false);
+    printSlowly("Р°СЂС‚РµС„Р°РєС‚С‹.", 4, true);
 
-    ShowName("Марк");
-    printSlowly("Ха-ха, да ладно, какие такие артефакты ты думаешь здесь затерялись?", true);
+    ShowName("РњР°СЂРє");
+    printSlowly("РҐР°-С…Р°, РґР° Р»Р°РґРЅРѕ, РєР°РєРёРµ С‚Р°РєРёРµ Р°СЂС‚РµС„Р°РєС‚С‹ С‚С‹ РґСѓРјР°РµС€СЊ Р·РґРµСЃСЊ Р·Р°С‚РµСЂСЏР»РёСЃСЊ?", true);
 
     ShowName(playerCharacter->GetName());
-    printSlowly("Можешь смеяться сколько угодно, я намерен найти ", false);
-    printSlowly("Четвёртый Дар.", 15, true, Yellow);
+    printSlowly("РњРѕР¶РµС€СЊ СЃРјРµСЏС‚СЊСЃСЏ СЃРєРѕР»СЊРєРѕ СѓРіРѕРґРЅРѕ, СЏ РЅР°РјРµСЂРµРЅ РЅР°Р№С‚Рё ", false);
+    printSlowly("Р§РµС‚РІС‘СЂС‚С‹Р№ Р”Р°СЂ.", 15, true, Yellow);
 
-    ShowName("Марк");
-    printSlowly("Ха-ха-ха, уже тринадцатое десятилетие, а ты всё веришь в эти сказки?", true);
+    ShowName("РњР°СЂРє");
+    printSlowly("РҐР°-С…Р°-С…Р°, СѓР¶Рµ С‚СЂРёРЅР°РґС†Р°С‚РѕРµ РґРµСЃСЏС‚РёР»РµС‚РёРµ, Р° С‚С‹ РІСЃС‘ РІРµСЂРёС€СЊ РІ СЌС‚Рё СЃРєР°Р·РєРё?", true);
 
     ShowName(playerCharacter->GetName());
     printSlowly("...", 1, true, Red);
 
-    ShowName("Марк");
-    printSlowly("Извини, я просто в который раз слышу об этом артефакте, но то всё были пустые слова.\n", false);
-    printSlowly("Я вижу ты настроен крайне серьёзно, может я присоеденюсь к тебе? Меня всё равно выгнали из замка.\n", true);
+    ShowName("РњР°СЂРє");
+    printSlowly("РР·РІРёРЅРё, СЏ РїСЂРѕСЃС‚Рѕ РІ РєРѕС‚РѕСЂС‹Р№ СЂР°Р· СЃР»С‹С€Сѓ РѕР± СЌС‚РѕРј Р°СЂС‚РµС„Р°РєС‚Рµ, РЅРѕ С‚Рѕ РІСЃС‘ Р±С‹Р»Рё РїСѓСЃС‚С‹Рµ СЃР»РѕРІР°.\n", false);
+    printSlowly("РЇ РІРёР¶Сѓ С‚С‹ РЅР°СЃС‚СЂРѕРµРЅ РєСЂР°Р№РЅРµ СЃРµСЂСЊС‘Р·РЅРѕ, РјРѕР¶РµС‚ СЏ РїСЂРёСЃРѕРµРґРµРЅСЋСЃСЊ Рє С‚РµР±Рµ? РњРµРЅСЏ РІСЃС‘ СЂР°РІРЅРѕ РІС‹РіРЅР°Р»Рё РёР· Р·Р°РјРєР°.\n", true);
 
     ClearScreen();
 
-    printSlowly("Возьмёте ли вы Марка с собой?\n\t 1 - Хорошо, присоединяйся.\n\t 2 - Нет, извини.\n", false);
+    printSlowly("Р’РѕР·СЊРјС‘С‚Рµ Р»Рё РІС‹ РњР°СЂРєР° СЃ СЃРѕР±РѕР№?\n\t 1 - РҐРѕСЂРѕС€Рѕ, РїСЂРёСЃРѕРµРґРёРЅСЏР№СЃСЏ.\n\t 2 - РќРµС‚, РёР·РІРёРЅРё.\n", false);
 
-    TestChoise(1, "Отказаться не получится, вам его жалко.");
+    TestChoise(1, "РћС‚РєР°Р·Р°С‚СЊСЃСЏ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ, РІР°Рј РµРіРѕ Р¶Р°Р»РєРѕ.");
 
     ClearScreen();
 
-    ShowName("Марк");
-    printSlowly("Спасибо, друг! Так и куда мы путь держим?", true);
+    ShowName("РњР°СЂРє");
+    printSlowly("РЎРїР°СЃРёР±Рѕ, РґСЂСѓРі! РўР°Рє Рё РєСѓРґР° РјС‹ РїСѓС‚СЊ РґРµСЂР¶РёРј?\n", false);
 
     Pause(false);
 
     ShowName(playerCharacter->GetName());
-    printSlowly("Я направлялся в ", false);
-    printSlowly("Лес Фей.", 20, false, Purple);
-    printSlowly("\nГоворят там живёт фея Мантра, самая долгоживущая из своего рода. ", false);
-    printSlowly("Она явно что-то знает.", true);
+    printSlowly("РЇ РЅР°РїСЂР°РІР»СЏР»СЃСЏ РІ ", false);
+    printSlowly("Р›РµСЃ Р¤РµР№.", 20, false, Purple);
+    printSlowly("\nР“РѕРІРѕСЂСЏС‚ С‚Р°Рј Р¶РёРІС‘С‚ С„РµСЏ РњР°РЅС‚СЂР°, СЃР°РјР°СЏ РґРѕР»РіРѕР¶РёРІСѓС‰Р°СЏ РёР· СЃРІРѕРµРіРѕ СЂРѕРґР°. ", false);
+    printSlowly("РћРЅР° СЏРІРЅРѕ С‡С‚Рѕ-С‚Рѕ Р·РЅР°РµС‚.", true);
 
     ClearScreen();
 
-    printSlowly("Вы отправляетесь в ", 10, false);
-    printSlowly("Лес Фей",3,false, Purple);
+    printSlowly("Р’С‹ РѕС‚РїСЂР°РІР»СЏРµС‚РµСЃСЊ РІ ", 10, false);
+    printSlowly("Р›РµСЃ Р¤РµР№", 3, false, Purple);
     printSlowly("...", 1, true);
 
     ClearScreen();
 
-    printSlowly("По дороге вы нашли старое разрушенное здание, рядом стоит сундук. ", false);
-    printSlowly("Вы хотите открыть сундук?\n\t 1 - Взглянуть.\n\t 2 - Не сотоит.\n", false);
+    printSlowly("РџРѕ РґРѕСЂРѕРіРµ РІС‹ РЅР°С€Р»Рё СЃС‚Р°СЂРѕРµ СЂР°Р·СЂСѓС€РµРЅРЅРѕРµ Р·РґР°РЅРёРµ, СЂСЏРґРѕРј СЃС‚РѕРёС‚ СЃСѓРЅРґСѓРє. ", false);
+    printSlowly("Р’С‹ С…РѕС‚РёС‚Рµ РѕС‚РєСЂС‹С‚СЊ СЃСѓРЅРґСѓРє?\n\t 1 - Р’Р·РіР»СЏРЅСѓС‚СЊ.\n\t 2 - РќРµ СЃРѕС‚РѕРёС‚.\n", false);
 
 
     if (TestChoise(2) == 1)
     {
-        printSlowly("Вам повезло! Помимо ненужного хлама вы нашли ", false);
-        printSlowly("Кристал Жизни", 5, false, Red);
-        printSlowly(". Максимальный уровень здоровья увеличен на (5).\n", true);
+        ClearScreen();
+
+        printSlowly("Р’Р°Рј РїРѕРІРµР·Р»Рѕ! РџРѕРјРёРјРѕ РЅРµРЅСѓР¶РЅРѕРіРѕ С…Р»Р°РјР° РІС‹ РЅР°С€Р»Рё ", false);
+        printSlowly("РљСЂРёСЃС‚Р°Р» Р–РёР·РЅРё", 5, false, Red);
+        printSlowly(". РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ Р·РґРѕСЂРѕРІСЊСЏ СѓРІРµР»РёС‡РµРЅ РЅР° (5).\n", true);
 
         playerCharacter->ChangeMaxHealth(5);
 
@@ -392,26 +393,28 @@ int main()
         if (!dogName.empty())
         {
             ShowName(dogName);
-            printSlowly("Вот это халява!", true);
+            printSlowly("Р’РѕС‚ СЌС‚Рѕ С…Р°Р»СЏРІР°!", true);
         }
     }
     else
     {
-        printSlowly("Вы решили что трогать чужое - плохо.", true);
+        ClearScreen();
+
+        printSlowly("Р’С‹ СЂРµС€РёР»Рё С‡С‚Рѕ С‚СЂРѕРіР°С‚СЊ С‡СѓР¶РѕРµ - РїР»РѕС…Рѕ.", true);
         Pause(false);
     }
 
     ClearScreen();
 
-    Enemy* enemy = new Enemy("Волк обыкновенный", 30, 50);
+    Enemy* enemy = new Enemy("Р’РѕР»Рє РѕР±С‹РєРЅРѕРІРµРЅРЅС‹Р№", 30, 5);
 
-    printSlowly("Вы продолжаете свой путь...\n", false);
-    printSlowly("Вы встретили лесную тварь, она настроена враждебно.\n", true);
+    printSlowly("Р’С‹ РїСЂРѕРґРѕР»Р¶Р°РµС‚Рµ СЃРІРѕР№ РїСѓС‚СЊ...\n", false);
+    printSlowly("Р’С‹ РІСЃС‚СЂРµС‚РёР»Рё Р»РµСЃРЅСѓСЋ С‚РІР°СЂСЊ, РѕРЅР° РЅР°СЃС‚СЂРѕРµРЅР° РІСЂР°Р¶РґРµР±РЅРѕ.\n", true);
 
     enemy->GetInfo();
 
-    printSlowly("Вы хотите с ней сразиться?\n\t", false);
-    printSlowly("1 - Погнали!\n\t2 - Сбежать (Шанс на успех 50%)", false);
+    printSlowly("Р’С‹ С…РѕС‚РёС‚Рµ СЃ РЅРµР№ СЃСЂР°Р·РёС‚СЊСЃСЏ?\n\t", false);
+    printSlowly("1 - РџРѕРіРЅР°Р»Рё!\n\t2 - РЎР±РµР¶Р°С‚СЊ (РЁР°РЅСЃ РЅР° СѓСЃРїРµС… 50%)\n", false);
 
     if (TestChoise(2) == 1)
     {
@@ -423,13 +426,131 @@ int main()
         if (GetRandom(1, 2) == 1)
         {
             ClearScreen();
+            printSlowly("РР·Р±РµР¶Р°С‚СЊ РґСЂР°РєРё РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ ", false);
             Fight(false, player, enemy);
         }
         else
         {
-            printSlowly("Вы смогли уйти от конфликта!", true); 
+            ClearScreen();
+            printSlowly("\nР’С‹ СЃРјРѕРіР»Рё СѓР№С‚Рё РѕС‚ РєРѕРЅС„Р»РёРєС‚Р°!\n", true);
         }
     }
+
+    if (!dogName.empty())
+    {
+        ShowName(dogName);
+        printSlowly("РђР№ С…Р°СЂРѕС€!\n\n", false);
+    }
+
+    Pause(true);
+
+    ClearScreen();
+
+    printSlowly("РџРѕСЃР»Рµ РґСЂР°РєРё РІС‹ РїСЂРѕРґРѕР»Р¶Р°РµС‚Рµ РїСѓС‚РµС€РµСЃРІРёРµ Рё Р·Р°Р±СЂРµРґР°РµС‚Рµ РЅР° РїРѕР»СЏРЅСѓ.\n", false);
+    printSlowly("РџРѕСЃСЂРµРґРё РЅРµС‘ СЃС‚РѕРёС‚ СЃСѓРЅРґСѓРє.\n", false);
+    printSlowly("РҐРѕС‚РёС‚Рµ РµРіРѕ РѕС‚РєСЂС‹С‚СЊ?\n\t", false);
+    printSlowly("1 - РљРѕРЅРµС‡РЅРѕ!\n\t2 - РќРµ СЃС‚РѕРёС‚\n", false);
+    
+    enemy = new Enemy("РњРёРјРёРє", 20, 3);
+
+    switch (TestChoise(2, "РќРµ-Р°"))
+    {
+    case 1:
+        ClearScreen();
+        printSlowly("Р­С‚Рѕ Р¶Рµ Р±С‹Р» РѕС‡РµРІРёРґРЅС‹Р№ РјРёРјРёРє...\n\n", false);
+        Fight(false, player, enemy);
+        if (!dogName.empty())
+        {
+            ShowName(dogName);
+            printSlowly("Р§СѓРІР°Рє, СЌС‚Рѕ Р¶РµСЃС‚СЊ!\n", true);
+        }
+        break;
+    case 2:
+        ClearScreen();
+        printSlowly("Р’С‹ РїСЂРѕС…РѕРґРёС‚Рµ РјРёРјРѕ, РїРѕРіРѕРґРёС‚Рµ, СЌС‚Рѕ Р±С‹Р» РјРёРјРёРє, РІР°Рј РїРѕРІРµР·Р»Рѕ...\n\n", false);
+        if (!dogName.empty())
+        {
+            ShowName(dogName);
+            printSlowly("РҐСЂРµРЅ С‚РµР±Рµ РјРёРјРёРє!\n", true);
+            Pause(false);
+        }
+        break;
+    }
+
+    ClearScreen();
+
+    ShowName("РњР°СЂРє");
+    printSlowly("РЇ РЅРёС‡РµРіРѕ РЅРµ РїСЂРѕРїСѓСЃС‚РёР»? РЈ РјРµРЅСЏ РµСЃС‚СЊ РєРѕРµ-С‡С‚Рѕ РґР»СЏ С‚РµР±СЏ.\n", true);
+    printSlowly("РњР°СЂРє РїРѕРґР°СЂРёР» РІР°Рј ", false);
+    printSlowly("Р—РµР»СЊРµ РСЃС†РµР»РµРЅРёСЏ\n\n", 10, false, Green);
+    printSlowly("Р’С‹ Р±С‹Р»Рё РёСЃС†РµР»РµРЅС‹ РїРѕ РјР°РєСЃРёРјСѓРјСѓ!\n\n", false);
+
+    playerCharacter->AddHealth(50);
+    playerCharacter->GetInfo();
+
+    cout << endl;
+    
+    ShowName(playerCharacter->GetName());
+    printSlowly("РЎРїР°СЃРёР±Рѕ! РљР°Рє СЂР°Р· РЅРµ С…РІР°С‚Р°Р»Рѕ!", true);
+
+    ClearScreen();
+
+    printSlowly("2 С‡Р°СЃР° СЃРїСѓСЃС‚СЏ...", 20, true);
+
+    ClearScreen();
+
+    ShowName("РњР°СЂРє");
+    printSlowly("РњСѓР¶РёРє, Сѓ РјРµРЅСЏ СЃРїРёРЅР° РѕС‚РІР°Р»РёРІР°РµС‚СЃСЏ!", true);
+
+    ShowName(playerCharacter->GetName());
+    printSlowly("РњС‹ РїРѕС‡С‚Рё РЅР° РјРµСЃС‚Рµ.", true);
+
+    ClearScreen();
+
+    printSlowly("РџРµСЂРµРґ РІР°РјРё РїСЂРѕСЃС‚РёСЂР°РµС‚СЃСЏ СЃР°РјС‹Р№ РєСЂР°СЃРёРІС‹Р№ РјР°РіРёС‡РµСЃРєРёР№ Р»РµСЃ РєРѕС‚РѕСЂС‹Р№ РІС‹ РєРѕРіРґР°-Р»РёР±Рѕ РІРёРґРµР»Рё.\n", false);
+    printSlowly("Р’Р°СЃ СЂР°Р·РґРµР»СЏРµС‚ С‚РѕР»СЊРєРѕ РјСѓС‚РЅР°СЏ СЂРµРєР°.", true);
+
+    ClearScreen();
+
+    printSlowly("Р§С‚Рѕ РІС‹ СЃРґРµР»Р°РµС‚Рµ?\n\t1 - РџРµСЂРµРїР»С‹С‚СЊ.\n\t2 - РџРѕРёСЃРєР°С‚СЊ РґСЂСѓРіРѕР№ РїСѓС‚СЊ\n", false);
+
+    switch (TestChoise(2, "РўР°Рє-С‚Р°Рє"))
+    {
+    case 1:
+        ClearScreen();
+        printSlowly("Р’С‹ РїРµСЂРµРїР»С‹Р»Рё СЂРµРєСѓ. РќРѕ РІР°СЃ РїРѕРєСѓСЃР°Р»Рё РіРёРіР°РЅС‚СЃРєРёРµ СЃСѓРґР°РєРё...\n\n", false);
+        playerCharacter->TakeDamage(10);
+        printSlowly("Р’С‹ РїРѕС‚РµСЂСЏР»Рё Р·РґРѕСЂРѕРІСЊРµ:", false);
+        printSlowly("10\n\n", 20, false, Red);
+        playerCharacter->GetInfo();
+
+        cout << endl;
+
+        break;
+    case 2:
+        ClearScreen();
+        ShowName("РњР°СЂРє");
+        printSlowly("РўСѓС‚ РґР° РјРѕСЃС‚Р° СЂСѓРєРѕР№ РїРѕРґР°С‚СЊ, РІРёР¶Сѓ РµРіРѕ РѕС‚СЃСЋРґР°.\n\n", false);
+        printSlowly("Р’С‹ РїРµСЂРµС€Р»Рё СЂРµРєСѓ РїРѕ РјРѕСЃС‚Сѓ.\n", false);
+        break;
+    }
+
+    Pause(false);
+    Pause(true);
+
+    ClearScreen();
+
+    printSlowly("Р’С‹ РїРѕСЃРµС‚РёР»Рё РЅРѕРІСѓСЋ Р»РѕРєР°С†РёСЋ Рё СЃС‚Р°Р»Рё СЃРёР»СЊРЅРµРµ!\n\n", false);
+    printSlowly("Р’С‹ РїРѕР»СѓС‡РёР»Рё РЅРѕРІС‹Р№ СѓСЂРѕРІРµРЅСЊ!\n", false);
+
+    playerCharacter->NextLevel();
+
+    playerCharacter->GetInfo();
+    cout << endl;
+
+    Pause(true);
+
+    ClearScreen();
 
     return 0;
 }

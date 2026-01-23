@@ -42,6 +42,13 @@ int Ninja::CalculateDamage()
 	return Warrior::CalculateDamage();
 }
 
+void Ninja::UpgradePassive()
+{
+	evasionFactor += 5;
+	damageMultiplier += 2;
+	doubleDamageChance += 2;
+}
+
 void Ninja::GetInfo()
 {
 	Warrior::GetInfo();
