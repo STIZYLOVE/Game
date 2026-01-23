@@ -55,7 +55,7 @@ public:
 	{
 		lvl += 1;
 		UpgradePassive();
-		cout << "Пассивная способность улучшена.\n" << endl;
+		cout << "Пассивные способности улучшены.\n" << endl;
 	}
 
 	virtual void UpgradePassive() {}
